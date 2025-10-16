@@ -68,6 +68,49 @@ class LinkedList<T> {
       current = current.next!;
     }
   }
+  getAt(idx: number): T | undefined {
+    if (idx < 0 || idx >= this.size) throw new Error("Index is out of bounds");
+    let current = this.head;
+    let currentIdx = 0;
+    while (current && currentIdx < idx) {
+      current = current.next;
+      currentIdx++;
+    }
+    return current?.data;
+  }
+  removeAt(idx: number): T {
+    if (idx < 0 || idx >= this.size) {
+      throw new Error("Index is out of bounds");
+    }
+
+    if (!this.head) {
+      throw new Error("Cannot remove from an empty list");
+    }
+
+    // Case 1: remove head
+    if (idx === 0) {
+      const value = this.head.data;
+      this.head = this.head.next;
+      this.size--;
+      return value;
+    }
+
+    // Case 2: remove non-head
+    let current = this.head;
+    for (let i = 0; i < idx - 1; i++) {
+      if (!current.next) {
+        throw new Error("Index is out of bounds");
+      }
+      current = current.next;
+    }
+
+    const removed = current.next!;
+    current.next = removed.next;
+    removed.next = null;
+
+    this.size--;
+    return removed.data;
+  }
 }
 
 const ll = new LinkedList<number>();
@@ -78,4 +121,7 @@ ll.prepend(3);
 ll.prepend(2);
 ll.prepend(1);
 ll.append(4);
-ll.insertAt(999, 40);
+
+console.log(ll.toArray());
+console.log(ll.removeAt(0));
+console.log(ll.toArray());
