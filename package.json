@@ -4,9 +4,18 @@
   "type": "module",
   "private": true,
   "devDependencies": {
+    "@biomejs/biome": "2.5.7",
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
-  }
+  },
+    "scripts": {
+      "format": "biome format --write .",
+      "lint": "biome lint .",
+      "lint:fix": "biome lint --write .",
+      "check": "biome check .",
+      "check:fix": "biome check --write .",
+      "typecheck": "tsc --noEmit"
+    }
 }
