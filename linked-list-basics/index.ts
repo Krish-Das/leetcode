@@ -145,6 +145,21 @@ class LinkedList<T> {
     }
     return -1
   }
+
+  reverse(): this {
+    let prev = null
+    let current = this.head
+
+    while (current !== null) {
+      const next = current.next
+      current.next = prev
+      prev = current
+      current = next
+    }
+    this.head = prev
+
+    return this
+  }
 }
 
 try {
@@ -156,7 +171,7 @@ try {
     .insertAt(2, "C")
     .toArray()
   console.log(res)
-  console.log(list.clear().toArray())
+  console.log(list.reverse().toArray())
 } catch (err) {
   console.log(`ERROR: ${err.message}`)
 }
