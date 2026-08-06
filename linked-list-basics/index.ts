@@ -128,6 +128,12 @@ class LinkedList<T> {
     return this
   }
 
+  clear(): this {
+    this.head = null
+    this.size = 0
+    return this
+  }
+
   indexOf(data: T): number {
     let pointer = this.head
     let index = 0
@@ -150,12 +156,7 @@ try {
     .insertAt(2, "C")
     .toArray()
   console.log(res)
-
-  console.log("A", list.indexOf("A"))
-  console.log("B", list.indexOf("B"))
-  console.log("C", list.indexOf("C"))
-  console.log("D", list.indexOf("D"))
-  console.log("E", list.indexOf("E"))
+  console.log(list.clear().toArray())
 } catch (err) {
   console.log(`ERROR: ${err.message}`)
 }
