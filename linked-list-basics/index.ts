@@ -127,13 +127,35 @@ class LinkedList<T> {
     this.size--
     return this
   }
+
+  indexOf(data: T): number {
+    let pointer = this.head
+    let index = 0
+
+    while (pointer !== null) {
+      if (pointer.data === data) return index
+      pointer = pointer.next
+      index++
+    }
+    return -1
+  }
 }
 
 try {
-  const list = new LinkedList()
-  const res = list.insertHead("B").insertHead("A").insertTail("D").toArray()
+  const list = new LinkedList<string>()
+  const res = list
+    .insertHead("B")
+    .insertHead("A")
+    .insertTail("D")
+    .insertAt(2, "C")
+    .toArray()
   console.log(res)
-  console.log(list.insertAt(2, "C").toArray())
+
+  console.log("A", list.indexOf("A"))
+  console.log("B", list.indexOf("B"))
+  console.log("C", list.indexOf("C"))
+  console.log("D", list.indexOf("D"))
+  console.log("E", list.indexOf("E"))
 } catch (err) {
   console.log(`ERROR: ${err.message}`)
 }
