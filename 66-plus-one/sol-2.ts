@@ -1,25 +1,25 @@
-import { test } from "./test";
+export {}
 
 function plusOne(digits: number[]) {
-  let hand = 1; // The problem requires to add the numbers by 1
-  let arr: number[] = [];
+  let hand = 1 // The problem requires to add the numbers by 1
+  const arr: number[] = []
 
   for (let i = digits.length; i >= 0; i--) {
-    const currentDigit = digits[i - 1];
-    const added = (currentDigit ?? 0) + hand;
-    const ones = added % 10;
-    const tenths = Math.floor((added % 100) / 10);
+    const currentDigit = digits[i - 1]
+    const added = (currentDigit ?? 0) + hand
+    const ones = added % 10
+    const tenths = Math.floor((added % 100) / 10)
 
-    if (hand !== 0 || currentDigit !== undefined) arr.unshift(ones);
+    if (hand !== 0 || currentDigit !== undefined) arr.unshift(ones)
 
-    hand = tenths;
+    hand = tenths
   }
 
-  return arr;
+  return arr
 }
 
-console.clear();
+console.clear()
 // console.log(test(run));
 
-console.log(plusOne("9".split("").map((s) => Number(s))));
-console.log(plusOne("8".split("").map((s) => Number(s))));
+console.log(plusOne("9".split("").map((s) => Number(s))))
+console.log(plusOne("8".split("").map((s) => Number(s))))

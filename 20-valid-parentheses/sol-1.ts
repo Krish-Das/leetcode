@@ -1,30 +1,31 @@
+// biome-ignore-all lint/style/noNonNullAssertion: allow concise map lookup in practice solution
 function isValid(s: string): boolean {
   const pairMaps = new Map<string, string>([
     [")", "("],
     ["}", "{"],
     ["]", "["],
-  ]);
-  const openings = ["(", "{", "["];
-  const stack: string[] = [];
+  ])
+  const openings = ["(", "{", "["]
+  const stack: string[] = []
 
-  for (let el of s) {
+  for (const el of s) {
     if (openings.includes(el)) {
-      stack.push(el);
-      continue;
+      stack.push(el)
+      continue
     }
 
-    const lastStackElement = stack[stack.length - 1];
-    const pair = pairMaps.get(el)!;
+    const lastStackElement = stack[stack.length - 1]
+    const pair = pairMaps.get(el)!
 
-    if (pair !== lastStackElement) return false;
-    stack.pop();
+    if (pair !== lastStackElement) return false
+    stack.pop()
   }
 
-  return !stack.length;
+  return !stack.length
 }
 
-console.clear();
-console.log(isValid("()[]{}"));
+console.clear()
+console.log(isValid("()[]{}"))
 // console.log(isValid("()"));
 // console.log(isValid("(]"));
 // console.log(isValid("[]"));
