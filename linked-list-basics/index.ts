@@ -160,18 +160,30 @@ class LinkedList<T> {
 
     return this
   }
+
+  /**
+   * @note uses Floyd's cycle detection or tortoise and hare algorithm
+   */
+  getMiddle(): T | undefined {
+    let fast = this.head
+    let slow = this.head
+
+    while (fast !== null && fast.next !== null) {
+      fast = fast.next.next
+      // biome-ignore lint/style/noNonNullAssertion: slow can't be null here since fast reaches the end first
+      slow = slow!.next
+    }
+    return slow?.data
+  }
 }
 
-try {
-  const list = new LinkedList<string>()
-  const res = list
-    .insertHead("B")
-    .insertHead("A")
-    .insertTail("D")
-    .insertAt(2, "C")
-    .toArray()
-  console.log(res)
-  console.log(list.reverse().toArray())
-} catch (err) {
-  console.log(`ERROR: ${err.message}`)
-}
+const list = new LinkedList<string>()
+const res = list
+  .insertHead("B")
+  .insertHead("A")
+  .insertTail("D")
+  .insertAt(2, "C")
+  .insertAt(2, "E")
+  .toArray()
+console.log(res)
+console.log(list.getMiddle())
