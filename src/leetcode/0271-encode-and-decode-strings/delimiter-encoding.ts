@@ -1,36 +1,49 @@
 class Solution {
-  private padding: number
-  private paddingContent: string
+  private delimiter: string
+  private delimiterRegexp: RegExp
 
   constructor() {
-    this.padding = 3
-    this.paddingContent = "0"
+    this.delimiter = "#"
+    this.delimiterRegexp = /#(.*)/s
   }
+
   encode(strs: string[]): string {
-    let encryptedStr = ""
+    let encoded = ""
     for (const str of strs) {
-      const paddedStr = str.length
-        .toString()
-        .padStart(this.padding, this.paddingContent)
-      encryptedStr += paddedStr + str
+      const length = str.length.toString()
+      encoded += length + this.delimiter + str
     }
-    return encryptedStr
+    return encoded
+  }
+
+  /**
+   * @returns the word and the rest (rest is null only when fully consumed)
+   */
+  private machine(str: string): [string, string | null] {
+    const [num, group] = str.split(this.delimiterRegexp)
+
+    const isEncodingInvalid = !num
+    if (isEncodingInvalid) throw new Error("Malformed encoding!")
+    const len = parseInt(num, 10)
+    const isStrEmpty = Number.isNaN(len)
+    if (isStrEmpty) throw new Error("Malformed encoding!")
+
+    if (!group) return ["", null]
+
+    const word = group.slice(0, len)
+    const rest = group.slice(len)
+    return [word, rest.length ? rest : null]
   }
 
   decode(str: string): string[] {
+    let acc = str
     const bucket: string[] = []
-    const machine = (str: string) => {
-      if (!str.length) return
-
-      const delimiter = str.slice(0, this.padding)
-      const delimiterNumber = parseInt(delimiter, 10)
-      const word = str.slice(this.padding, delimiterNumber + this.padding)
-      const nextWord = str.slice(delimiterNumber + this.padding)
-
+    while (acc) {
+      const [word, rest] = this.machine(acc)
       bucket.push(word)
-      machine(nextWord)
+      if (!rest) break
+      acc = rest
     }
-    machine(str)
     return bucket
   }
 }
@@ -38,9 +51,13 @@ class Solution {
 const sol = new Solution()
 // const strs = ["Hello", "World"]
 // const strs = ["apples", "2orange"]
-// const strs = ["apple", "typewriter"]
-const strs = ["", "vn"]
+const strs = ["apple", "9typew#iters"]
+// const strs = ["", "vn"]
 // const strs = [""]
 const encoded = sol.encode(strs)
 const decoded = sol.decode(encoded)
-console.log({ strs, encoded, decoded })
+console.log(decoded)
+// console.log(sol.decode("5#apple12#9typew#iters"))
+// console.log(sol.decode("6#apples7#2orange"))
+// console.log(sol.decode("0#2#vn"))
+// console.log(sol.decode("0#"))
