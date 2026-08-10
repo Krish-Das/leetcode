@@ -1,18 +1,5 @@
 /** biome-ignore-all lint/style/noNonNullAssertion: nums will always be in the range */
 
-/**
- * @todo breaks when nums contains 0
- */
-function _productExceptSelf(nums: number[]): number[] {
-  const productOfAll = nums.reduce((acc, num) => acc * num, 1)
-  const bucket: number[] = []
-  for (const num of nums) {
-    const productExceptNum = productOfAll / num
-    bucket.push(productExceptNum)
-  }
-  return bucket
-}
-
 // worst: O(n²); best: O(n)
 function productExceptSelf(nums: number[]): number[] {
   const map = new Map<number, number>()
@@ -44,11 +31,9 @@ function productExceptSelf(nums: number[]): number[] {
 console.log(
   productExceptSelf([1, 2, 3, 4]), // [24,12,8,6]
 )
-
 console.log(
   productExceptSelf([-1, 1, 0, -3, 3]), // [0,0,9,0,0]
 )
-
 console.log(
   productExceptSelf([0, 0]), // [0,0,9,0,0]
 )
