@@ -2,7 +2,7 @@
 
 ## Structure
 
-```
+```sh
 src/
 ├── leetcode/     # LeetCode problem solutions
 ├── concepts/     # Standalone DSA concept practice
