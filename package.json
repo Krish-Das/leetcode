@@ -6,6 +6,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.7",
     "@types/bun": "latest",
+    "@vitest/ui": "^4.1.10",
     "vitest": "^4.1.10"
   },
   "peerDependencies": {
@@ -23,5 +24,8 @@
     "test:ui": "vitest --ui",
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:coverage": "vitest run --coverage --coverage.reporter=text"
+  },
+  "dependencies": {
+    "@vitest/coverage-v8": "^4.1.10"
   }
 }
