@@ -21,7 +21,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui",
+    "test:ui": "vitest --ui --open=false",
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:coverage": "vitest run --coverage --coverage.reporter=text"
   },
