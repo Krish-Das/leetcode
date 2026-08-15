@@ -5,6 +5,7 @@
   "private": true,
   "devDependencies": {
     "@biomejs/biome": "2.5.7",
+    "@type-challenges/utils": "^0.1.1",
     "@types/bun": "latest",
     "@vitest/ui": "^4.1.10",
     "vitest": "^4.1.10"
