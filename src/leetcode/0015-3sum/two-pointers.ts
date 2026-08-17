@@ -1,14 +1,18 @@
 function threeSum(nums: number[]) {
+  if (nums.length < 3) return []
+
   const cache = new Map<number, [number, number, number]>()
   const triplets: [number, number, number][] = []
   const seen = new Set<string>()
   for (let i = 0; i < nums.length; i++) {
+    // biome-ignore lint/style/noNonNullAssertion: nums[i] is always inbound
     const first = nums[i]!
     if (cache.has(first)) continue
 
     const set = new Set<number>()
     for (let j = 0; j < nums.length; j++) {
       if (i === j) continue
+      // biome-ignore lint/style/noNonNullAssertion: nums[j] is always inbound
       const second = nums[j]!
       const needed = 0 - first - second
       const isFound = set.has(needed)
