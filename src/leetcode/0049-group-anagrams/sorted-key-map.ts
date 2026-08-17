@@ -1,18 +1,16 @@
 function groupAnagrams(strs: string[]): string[][] {
-  const map = new Map<string, string[]>()
+  const group = new Map<string, string[]>()
   for (const str of strs) {
-    const groupName = str.split("").sort().join("")
-    const group = map.get(groupName)
-
-    if (!group) {
-      map.set(groupName, [str])
-      continue
-    }
-
-    map.set(groupName, [...group, str])
+    const sorted = [...str].sort().join("")
+    const existing = group.get(sorted)
+    const newArr = existing ?? []
+    newArr.push(str) // O(1) instead of spreading the array, which is O(n)
+    group.set(sorted, newArr)
   }
 
-  return [...map.values()]
+  return [...group.values()]
 }
 
-console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])) // [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]],
+console.log(groupAnagrams([""])) // [[""]]
+console.log(groupAnagrams(["a"])) // [["a"]]
