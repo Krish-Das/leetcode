@@ -3,12 +3,7 @@ function topKFrequent(nums: number[], k: number): number[] {
   for (const num of nums) map.set(num, (map.get(num) ?? 0) + 1)
 
   const bucket = Array.from({ length: nums.length + 1 }, () => [] as number[])
-  /*
-   * biome-ignore lint/style/noNonNullAssertion: Read below
-   *
-   * bucket.length >= Max(map.get) since bucket is populated with nums.length
-   */
-  for (const [num, index] of map) bucket[index]!.push(num)
+  for (const [num, index] of map) (bucket[index] ?? []).push(num)
 
   const ans: number[] = []
   for (let i = bucket.length - 1; i >= 0 && ans.length < k; i--)
