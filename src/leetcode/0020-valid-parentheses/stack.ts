@@ -1,34 +1,25 @@
-// biome-ignore-all lint/style/noNonNullAssertion: allow concise map lookup in practice solution
+const PAIRS: Record<string, string> = {
+  ")": "(",
+  "}": "{",
+  "]": "[",
+}
+
 function isValid(s: string): boolean {
-  const pairMaps = new Map<string, string>([
-    [")", "("],
-    ["}", "{"],
-    ["]", "["],
-  ])
-  const openings = ["(", "{", "["]
   const stack: string[] = []
 
-  for (const el of s) {
-    if (openings.includes(el)) {
-      stack.push(el)
-      continue
-    }
+  for (const token of s) {
+    const opening = PAIRS[token]
 
-    const lastStackElement = stack[stack.length - 1]
-    const pair = pairMaps.get(el)!
-
-    if (pair !== lastStackElement) return false
-    stack.pop()
+    if (opening) {
+      if (stack.pop() !== PAIRS[token]) return false
+    } else stack.push(token)
   }
 
   return !stack.length
 }
 
-console.clear()
-console.log(isValid("()[]{}"))
-// console.log(isValid("()"));
-// console.log(isValid("(]"));
-// console.log(isValid("[]"));
-// console.log(isValid("([])"));
-// console.log(isValid("([])"));
-// console.log(isValid("([)]"));
+console.log(isValid("()")) // true
+console.log(isValid("()[]{}")) // true
+console.log(isValid("(]")) // false
+console.log(isValid("([])")) // true
+console.log(isValid("([)]")) // false
