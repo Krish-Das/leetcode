@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/noNonNullAssertion: indices are always within bounds */
 function search(nums: number[], target: number): number {
   let l = 0
   let r = nums.length - 1
