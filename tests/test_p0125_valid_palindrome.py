@@ -1,4 +1,4 @@
-from two_pointers import Solution
+from lcpy.leetcode.p0125_valid_palindrome import Solution
 
 
 def test_valid_palindrome() -> None:
