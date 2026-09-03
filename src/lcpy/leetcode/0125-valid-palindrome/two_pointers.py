@@ -15,10 +15,3 @@ class Solution:
             left -= 1
 
         return True
-
-
-sol = Solution()
-print(sol.isPalindrome("A man, a plan, a canal: Panama"))  # true
-print(sol.isPalindrome("race a car"))  # false
-print(sol.isPalindrome("race e car"))  # true
-print(sol.isPalindrome(" "))  # true
