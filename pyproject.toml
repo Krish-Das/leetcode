@@ -32,3 +32,6 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 
 [tool.mypy]
 strict = true
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
