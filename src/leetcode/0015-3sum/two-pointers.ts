@@ -31,4 +31,4 @@ function threeSum(nums: number[]): number[][] {
   return ans
 }
 
-console.log(threeSum([1, 0, -2, 3, 1, -1]))
+export { threeSum }
