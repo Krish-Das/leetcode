@@ -15,7 +15,7 @@ function pivotIndex(nums: number[]): number {
   for (let i = 0, fAcc = 0; i < nums.length; i++) {
     // biome-ignore lint/style/noNonNullAssertion: 0 < i < len
     fAcc += nums[i]!
-    if(fAcc === accumulator[i]) return i
+    if (fAcc === accumulator[i]) return i
   }
 
   return -1
