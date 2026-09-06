@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { pivotIndex } from "."
+import { pivotIndex } from "./prefix-sum"
 
 describe("pivotIndex", () => {
   it("returns 3 for [1, 7, 3, 6, 5, 6]", () => {
