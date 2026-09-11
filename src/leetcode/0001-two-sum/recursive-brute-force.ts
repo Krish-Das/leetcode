@@ -6,7 +6,8 @@ let lastPointer: number | undefined
 
 function count() {
   for (let i = 0; i < nums.length; i++) {
-    const added = nums[pointerAt] + nums[i]
+    // biome-ignore lint/style/noNonNullAssertion: inside bounds
+    const added = nums[pointerAt]! + nums[i]!
     if (pointerAt !== i && added === target) {
       lastPointer = i
       break

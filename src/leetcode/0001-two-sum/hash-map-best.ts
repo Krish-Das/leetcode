@@ -2,7 +2,8 @@ function twoSum(nums: number[], target: number): number[] {
   const map = new Map()
 
   for (let i = 0; i < nums.length; i++) {
-    const num = nums[i]
+    // biome-ignore lint/style/noNonNullAssertion: 0 <= i <= len
+    const num = nums[i]!
     const need = target - num
     if (map.has(need)) {
       return [map.get(need), i]

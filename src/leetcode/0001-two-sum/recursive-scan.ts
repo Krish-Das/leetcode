@@ -3,17 +3,20 @@ const target = 9
 
 let answerArr: number[] = []
 
-function _countWithMap(pointerAt: number = 0): number[] | undefined {
+function countWithMap(pointerAt: number = 0): number[] | undefined {
   const firstElement = nums[pointerAt]
 
   for (let i = 0; i < nums.length; i++) {
     const el = nums[i]
-    if (el + firstElement === target && pointerAt !== i) {
+    // biome-ignore lint/style/noNonNullAssertion: depricated code
+    if (el! + firstElement! === target && pointerAt !== i) {
       answerArr = [pointerAt, i]
       break
     }
   }
 
-  if (answerArr.length === 0) _countWithMap(pointerAt + 1)
+  if (answerArr.length === 0) countWithMap(pointerAt + 1)
   if (answerArr.length !== 0) return answerArr
 }
+
+export { countWithMap }

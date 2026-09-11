@@ -2,10 +2,12 @@ function twoSum(nums: number[], target: number): number[] {
   const map = new Map<number, number>()
 
   for (let i = 0; i < nums.length; i++) {
-    const need = target - nums[i]
+    // biome-ignore lint/style/noNonNullAssertion: 0 <= i < len
+    const num = nums[i]!
+    const need = target - num
     const index = map.get(need)
     if (index !== undefined) return [index, i]
-    map.set(nums[i], i)
+    map.set(num, i)
   }
 
   return []

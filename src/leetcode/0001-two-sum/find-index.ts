@@ -1,6 +1,7 @@
 function that(nums: number[], target: number): number[] {
   function counterPart(pointerAt: number = 0): number {
-    const firstElement = nums[pointerAt]
+    // biome-ignore lint/style/noNonNullAssertion: never out of bound
+    const firstElement = nums[pointerAt]!
     return nums.findIndex(
       (e, idx) => idx !== pointerAt && firstElement + e === target,
     )

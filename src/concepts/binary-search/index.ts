@@ -4,7 +4,8 @@ function search(array: number[], target: number): number {
 
   while (low <= high) {
     const mid = Math.floor((high + low) / 2)
-    const element = array[mid]
+    // biome-ignore lint/style/noNonNullAssertion: 0 <= l <= m <= r <= len
+    const element = array[mid]!
 
     if (element === target) {
       return mid
