@@ -1,6 +1,15 @@
-type MyPick<K, V extends keyof K> = {
-  [key in V]: K[key]
+import type { Equal, Expect } from "@type-challenges/utils"
+
+type MyPick<T, K extends keyof T> = {
+  [key in K]: T[key]
 }
+
+type _cases = [
+  Expect<Equal<Expected1, MyPick<Todo, "title">>>,
+  Expect<Equal<Expected2, MyPick<Todo, "title" | "completed">>>,
+  // @ts-expect-error
+  MyPick<Todo, "title" | "completed" | "invalid">,
+]
 
 interface Todo {
   title: string
@@ -8,5 +17,11 @@ interface Todo {
   completed: boolean
 }
 
-type _TodoPreview = MyPick<Todo, "title" | "completed">
-//   ^?
+interface Expected1 {
+  title: string
+}
+
+interface Expected2 {
+  title: string
+  completed: boolean
+}
