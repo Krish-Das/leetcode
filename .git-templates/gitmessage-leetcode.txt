@@ -1,0 +1,6 @@
+solve: LeetCode <SL> (<NAME>)
+
+- Add solution to the problem
+- Add unit tests
+
+Refs: <URL>
