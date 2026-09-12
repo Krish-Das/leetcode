@@ -60,13 +60,13 @@
 
 ## What to avoid
 
-| Avoid                                     | Prefer                                                                    |
-| ----------------------------------------- | ------------------------------------------------------------------------- |
-| Backtick-wrapped identifiers in bullets   | Plain prose: "Rename X to Y"                                              |
-| Bullets that are just file/function lists | Bullets that describe behavior change                                     |
-| Mixing unrelated changes without grouping | Group by concern, or split commits                                        |
-| Arrow notation `X → Y` for renames        | "Rename X to Y"                                                           |
-| "Update UI to use X from Y query"         | "Default account badge now reflects the user doc, not the accounts table" |
+| Avoid                                     | Prefer                                                        |
+| ----------------------------------------- | ------------------------------------------------------------- |
+| Backtick-wrapped identifiers in bullets   | Plain prose: "Rename X to Y"                                  |
+| Bullets that are just file/function lists | Bullets that describe behavior change                         |
+| Mixing unrelated changes without grouping | Group by concern, or split commits                            |
+| Arrow notation `X → Y` for renames        | "Rename X to Y"                                               |
+| "Update UI to use X from Y query"         | "Badge now reflects the source record, not the derived table" |
 
 ---
 
