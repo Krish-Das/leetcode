@@ -1,7 +1,12 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-// biome-ignore lint/suspicious/noExplicitAny: unknown breaks contravariant param matching
-type MyReturnType<T> = T extends (...args: any[]) => infer U ? U : never
+// biome-ignore lint/suspicious/noExplicitAny: generic constraint needs any
+type MyReturnType<T extends (...args: any[]) => any> = T extends (
+  // biome-ignore lint/suspicious/noExplicitAny: generic constraint needs any
+  ...args: any[]
+) => infer U
+  ? U
+  : never
 
 // ================== TEST CASES ==================
 
