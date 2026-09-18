@@ -1,6 +1,6 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type Push<T extends unknown[], U> = [...T, U]
+type Push<T extends readonly unknown[], U> = [...T, U]
 
 // ================== TEST CASES ==================
 
