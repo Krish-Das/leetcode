@@ -1,6 +1,6 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type Unshift<T extends unknown[], U> = [U, ...T]
+type Unshift<T extends readonly unknown[], U> = [U, ...T]
 
 // ================== TEST CASES ==================
 
