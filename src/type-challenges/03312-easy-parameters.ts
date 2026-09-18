@@ -1,6 +1,11 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: generic type utility, any needed for inference */
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type MyParameters<T> = T extends (...args: infer U) => unknown ? U : never
+type MyParameters<T extends (...args: any[]) => any> = T extends (
+  ...args: infer U
+) => any
+  ? U
+  : never
 
 // ================== TEST CASES ==================
 
