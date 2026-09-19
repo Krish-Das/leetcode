@@ -1,9 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type Length<T extends readonly unknown[]> = T["length"]
-
-// ================== TEST CASES ==================
-
 const tesla = ["tesla", "model 3", "model X", "model Y"] as const
 const spaceX = [
   "FALCON 9",
@@ -21,3 +17,7 @@ type _cases = [
   // @ts-expect-error
   Length<"hello world">,
 ]
+
+// ================== SOLUTION ==================
+
+type Length<T extends readonly unknown[]> = T["length"]

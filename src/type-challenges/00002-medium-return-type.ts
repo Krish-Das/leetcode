@@ -1,15 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-// biome-ignore lint/suspicious/noExplicitAny: generic constraint needs any
-type MyReturnType<T extends (...args: any[]) => any> = T extends (
-  // biome-ignore lint/suspicious/noExplicitAny: generic constraint needs any
-  ...args: any[]
-) => infer U
-  ? U
-  : never
-
-// ================== TEST CASES ==================
-
 type _cases = [
   Expect<Equal<string, MyReturnType<() => string>>>,
   Expect<Equal<123, MyReturnType<() => 123>>>,
@@ -29,3 +19,13 @@ type ComplexObject = {
 const fn = (v: boolean) => (v ? 1 : 2)
 // biome-ignore lint/suspicious/noExplicitAny: Test-case
 const fn1 = (v: boolean, _w: any) => (v ? 1 : 2)
+
+// ================== SOLUTION ==================
+
+// biome-ignore lint/suspicious/noExplicitAny: generic constraint needs any
+type MyReturnType<T extends (...args: any[]) => any> = T extends (
+  // biome-ignore lint/suspicious/noExplicitAny: generic constraint needs any
+  ...args: any[]
+) => infer U
+  ? U
+  : never

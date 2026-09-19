@@ -1,11 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type MyOmit<T, K extends keyof T> = {
-  [P in keyof T as P extends K ? never : P]: T[P]
-}
-
-// ================== TEST CASES ==================
-
 type _cases = [
   Expect<Equal<Expected1, MyOmit<Todo, "description">>>,
   Expect<Equal<Expected2, MyOmit<Todo, "description" | "completed">>>,
@@ -35,4 +29,10 @@ interface Expected2 {
 
 interface Expected3 {
   readonly title: string
+}
+
+// ================== SOLUTION ==================
+
+type MyOmit<T, K extends keyof T> = {
+  [P in keyof T as P extends K ? never : P]: T[P]
 }

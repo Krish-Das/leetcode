@@ -1,9 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type MyExclude<T, U> = T extends U ? never : T
-
-// ================== TEST CASES ==================
-
 type _cases = [
   Expect<Equal<MyExclude<"a" | "b" | "c", "a">, "b" | "c">>,
   Expect<Equal<MyExclude<"a" | "b" | "c", "a" | "b">, "c">>,
@@ -12,3 +8,7 @@ type _cases = [
     Equal<MyExclude<string | number | (() => void), Function>, string | number>
   >,
 ]
+
+// ================== SOLUTION ==================
+
+type MyExclude<T, U> = T extends U ? never : T

@@ -1,12 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type Concat<T extends readonly unknown[], U extends readonly unknown[]> = [
-  ...T,
-  ...U,
-]
-
-// ================== TEST CASES ==================
-
 const tuple = [1] as const
 
 type _cases = [
@@ -24,3 +17,10 @@ type _cases = [
 
 // @ts-expect-error
 type _error = Concat<null, undefined>
+
+// ================== SOLUTION ==================
+
+type Concat<T extends readonly unknown[], U extends readonly unknown[]> = [
+  ...T,
+  ...U,
+]
