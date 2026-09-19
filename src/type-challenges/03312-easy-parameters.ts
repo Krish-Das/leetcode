@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: generic type utility, any needed for inference */
 import type { Equal, Expect } from "@type-challenges/utils"
 
 function foo(_arg1: string, _arg2: number): void {}
@@ -13,8 +12,9 @@ type _cases = [
 
 // ================== SOLUTION ==================
 
-type MyParameters<T extends (...args: any[]) => any> = T extends (
+// biome-ignore lint/suspicious/noExplicitAny: generic constraint needs any
+type MyParameters<T extends (...args: any[]) => unknown> = T extends (
   ...args: infer U
-) => any
+) => unknown
   ? U
   : never

@@ -23,7 +23,7 @@ const fn1 = (v: boolean, _w: any) => (v ? 1 : 2)
 // ================== SOLUTION ==================
 
 // biome-ignore lint/suspicious/noExplicitAny: generic constraint needs any
-type MyReturnType<T extends (...args: any[]) => any> = T extends (
+type MyReturnType<T extends (...args: any[]) => unknown> = T extends (
   // biome-ignore lint/suspicious/noExplicitAny: generic constraint needs any
   ...args: any[]
 ) => infer U
