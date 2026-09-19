@@ -1,11 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type TupleToObject<T extends readonly PropertyKey[]> = {
-  [P in T[number]]: P
-}
-
-// ================== TEST CASES ==================
-
 const tuple = ["tesla", "model 3", "model X", "model Y"] as const
 const tupleNumber = [1, 2, 3, 4] as const
 const sym1 = Symbol(1)
@@ -43,3 +37,9 @@ type _cases = [
 // @ts-expect-error
 // biome-ignore lint/complexity/noBannedTypes: test case
 type _error = TupleToObject<[[1, 2], {}]>
+
+// ================== SOLUTION ==================
+
+type TupleToObject<T extends readonly PropertyKey[]> = {
+  [P in T[number]]: P
+}

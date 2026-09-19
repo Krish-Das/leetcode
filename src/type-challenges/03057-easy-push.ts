@@ -1,9 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type Push<T extends readonly unknown[], U> = [...T, U]
-
-// ================== TEST CASES ==================
-
 type _cases = [
   Expect<Equal<Push<[], 1>, [1]>>,
   Expect<Equal<Push<[1, 2], "3">, [1, 2, "3"]>>,
@@ -16,3 +12,7 @@ type _errors = [
   // @ts-expect-error
   Expect<Equal<Push<string[], number>, [string, number]>>,
 ]
+
+// ================== SOLUTION ==================
+
+type Push<T extends readonly unknown[], U> = [...T, U]
