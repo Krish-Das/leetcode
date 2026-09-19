@@ -20,11 +20,10 @@ type _cases = [
 
 // ================== SOLUTION ==================
 
-// biome-ignore lint/suspicious/noExplicitAny: generic constraint requires any
-type ListEqualTo<List extends readonly any[], Target> = List extends readonly [
-  infer First,
-  ...infer Rest,
-]
+type ListEqualTo<
+  List extends readonly unknown[],
+  Target,
+> = List extends readonly [infer First, ...infer Rest]
   ? [
       Equal<First, Target> extends true ? true : false,
       ...ListEqualTo<Rest, Target>,
