@@ -19,8 +19,7 @@ type _cases = [
 
 // ================== SOLUTION ==================
 
-// biome-ignore lint/suspicious/noExplicitAny: generic constraint requires any
-type OnlyNumbers2<List extends readonly any[]> = List extends readonly [
+type OnlyNumbers2<List extends readonly unknown[]> = List extends readonly [
   infer First,
   ...infer Rest,
 ]

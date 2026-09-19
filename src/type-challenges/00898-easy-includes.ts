@@ -30,8 +30,7 @@ type _cases = [
  * For a version of Includes that doesn't rely on the Equal type helper, see commit d66204b.
  */
 
-// biome-ignore lint/suspicious/noExplicitAny: generic constraint requires any
-type Includes<List extends readonly any[], Target> = List extends [
+type Includes<List extends readonly unknown[], Target> = List extends readonly [
   infer First,
   ...infer Rest,
 ]
