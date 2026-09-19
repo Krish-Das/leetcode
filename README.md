@@ -35,6 +35,14 @@ src/
 - Place in `src/language/{topic}/`
 - Used for TypeScript/JavaScript language feature deep-dives that aren't algorithms (e.g., `this-keyword/`, `closures/`, `prototypes/`)
 
+### Type Challenges
+
+- Place in `src/type-challenges/{name}.ts`
+- Used for TypeScript type-level programming exercises (e.g., `00002-medium-return-type.ts`, `00004-easy-pick.ts`)
+- Follows the same numbering convention as LeetCode problems (zero-padded, from [type-challenges](https://github.com/type-challenges/type-challenges))
+- Custom challenges use a descriptive kebab-case name that reflects the approach or problem (e.g., `only-numbers.ts`, `flatten-array.ts`)
+- Avoid generic or non-descriptive names like `jumble.ts`, `miscellaneous.ts`, `all.ts`, etc.
+
 ### Quizzes
 
 - Place in `src/quizzes/`
