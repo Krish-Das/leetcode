@@ -1,11 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils"
 
-type MyReadonly<T> = {
-  readonly [P in keyof T]: T[P]
-}
-
-// ================== TEST CASES ==================
-
 interface Todo {
   title: string
   description: string
@@ -30,4 +24,10 @@ interface Todo1 {
   meta: {
     author: string
   }
+}
+
+// ================== SOLUTION ==================
+
+type MyReadonly<T> = {
+  readonly [P in keyof T]: T[P]
 }
