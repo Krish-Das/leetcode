@@ -45,15 +45,14 @@ type _cases = [
 // ================== SOLUTION ==================
 
 type TColumn = { readonly id: string; readonly values: readonly unknown[] }
-
 type GetColValuesById<
   Columns extends readonly TColumn[],
-  Id,
+  Id extends TColumn["id"],
 > = Columns extends readonly [
-  { id: infer S extends TColumn["id"]; values: infer V },
+  { id: infer I extends TColumn["id"]; values: infer V },
   ...infer Rest extends readonly TColumn[],
 ]
-  ? Id extends S
+  ? Id extends I
     ? V
     : GetColValuesById<Rest, Id>
   : never
