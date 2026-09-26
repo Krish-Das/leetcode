@@ -45,6 +45,10 @@ type _cases = [
 
 // ================== SOLUTION ==================
 
-type AppendToObject<Obj, Key extends PropertyKey, Value> = {
+type AppendToObject<
+  Obj extends Record<PropertyKey, unknown>,
+  Key extends PropertyKey,
+  Value,
+> = {
   [k in keyof Obj | Key]: k extends keyof Obj ? Obj[k] : Value
 }
