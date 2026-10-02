@@ -32,6 +32,20 @@ it("traverses existing branches to insert nested values", () => {
   expect(tree.root?.right?.right?.value).toBe(8)
 })
 
+it("returns whether a value exists anywhere in the tree", () => {
+  const tree = new Tree(compareNumbers)
+
+  for (const value of [5, 3, 7, 2, 4, 6, 8]) {
+    tree.insert(value)
+  }
+
+  expect(tree.has(5)).toBe(true)
+  expect(tree.has(2)).toBe(true)
+  expect(tree.has(8)).toBe(true)
+  expect(tree.has(9)).toBe(false)
+  expect(tree.has(0)).toBe(false)
+})
+
 it("inserts strings using the injected comparator", () => {
   const tree = new Tree(compareStrings)
 
