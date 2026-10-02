@@ -39,4 +39,17 @@ export class Tree<T> {
       node = next
     }
   }
+
+  has(target: T): boolean {
+    let current = this._root
+
+    while (current) {
+      if (this.compare(current.value, target) === 0) return true
+      const order = this.compare(target, current.value)
+      const side = order < 0 ? "left" : "right"
+      current = current[side]
+    }
+
+    return false
+  }
 }
