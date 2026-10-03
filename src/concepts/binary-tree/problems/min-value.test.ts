@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { Tree } from "../traversal"
-import { min } from "./min-value"
+import { bstMin, min } from "./min-value"
 
 const compareNumbers = (value: number, nodeValue: number) => value - nodeValue
 
@@ -25,5 +25,19 @@ describe("min", () => {
 
   it("finds negative minimum values", () => {
     expect(min(createTree([0, -5, 10, -10, -2, 5]))).toBe(-10)
+  })
+})
+
+describe("bstMin", () => {
+  it("returns undefined for an empty tree", () => {
+    expect(bstMin(createTree([]))).toBeUndefined()
+  })
+
+  it("finds the leftmost value in a multi-level binary search tree", () => {
+    expect(bstMin(createTree([20, 10, 30, 6, 14, 24, 3, 8, 26]))).toBe(3)
+  })
+
+  it("finds negative minimum values", () => {
+    expect(bstMin(createTree([0, -5, 10, -10, -2, 5]))).toBe(-10)
   })
 })
