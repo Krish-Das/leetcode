@@ -4,12 +4,11 @@
   "type": "module",
   "module": "index.ts",
   "scripts": {
-    "fmt": "biome format --write",
-    "fmt:check": "biome format",
-    "lint": "biome lint",
-    "lint:fix": "biome lint --write",
-    "check": "biome check",
-    "check:fix": "biome check --write",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "typecheck": "tsc --noEmit",
     "tsc": "tsc --noEmit",
     "test": "vitest run",
     "debug": "bun --inspect-wait=localhost:6499/debug",
@@ -23,11 +22,13 @@
     "@vitest/coverage-v8": "^4.1.12"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.7",
     "@type-challenges/utils": "^0.1.1",
     "@types/bun": "latest",
     "@vitest/ui": "^4.1.12",
-    "typescript": "^6",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.89.0",
+    "oxlint-tsgolint": "^7.0.2004",
+    "typescript": "^6.0.3",
     "vitest": "^4.1.12"
   }
 }
