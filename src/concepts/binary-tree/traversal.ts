@@ -17,6 +17,17 @@ class Traversal<T> {
       yield n.value
     }
   }
+
+  *levelOrder(): Generator<T, void, undefined> {
+    const queue: NodeLink<T>[] = [this.root]
+
+    while (queue.length) {
+      const node = queue.shift()
+      if (!node) continue
+      yield node.value
+      queue.push(node.left, node.right)
+    }
+  }
 }
 
 export class Tree<T> extends TreeBase<T> {
