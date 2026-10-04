@@ -36,6 +36,14 @@ export class Tree<T> extends TreeBase<T> {
     }
     return visit(this._root)
   }
+
+  size(): number {
+    const traverse = (node: NodeLink<T>): number => {
+      if (!node) return 0
+      return 1 + traverse(node.left) + traverse(node.right)
+    }
+    return traverse(this._root)
+  }
 }
 
 export type { Comparator, NodeLink, TreeNode }
