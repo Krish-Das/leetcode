@@ -129,3 +129,63 @@ describe("size", () => {
     expect(tree.size()).toBe(6)
   })
 })
+
+describe("leafCount", () => {
+  it("returns 0 for an empty tree", () => {
+    const tree = new Tree(compareNumbers)
+
+    expect(tree.leafCount()).toBe(0)
+  })
+
+  it("returns 1 for a tree with only a root", () => {
+    const tree = new Tree(compareNumbers)
+    tree.insert(20)
+
+    expect(tree.leafCount()).toBe(1)
+  })
+
+  it("counts leaves in a balanced tree", () => {
+    /*
+            20
+          /    \
+        10      30
+       /  \    /
+      6   14  24
+     / \        \
+    3   8        26
+    */
+    const tree = new Tree(compareNumbers)
+    for (const value of [20, 10, 30, 6, 14, 24, 3, 8, 26]) {
+      tree.insert(value)
+    }
+
+    expect(tree.leafCount()).toBe(4)
+  })
+
+  it("returns 1 for a left-heavy chain", () => {
+    const tree = new Tree(compareNumbers)
+    for (const value of [10, 9, 8, 7, 6, 5, 4]) {
+      tree.insert(value)
+    }
+
+    expect(tree.leafCount()).toBe(1)
+  })
+
+  it("returns 1 for a right-heavy chain", () => {
+    const tree = new Tree(compareNumbers)
+    for (const value of [1, 2, 3, 4, 5, 6, 7]) {
+      tree.insert(value)
+    }
+
+    expect(tree.leafCount()).toBe(1)
+  })
+
+  it("counts leaves in a tree with single-child nodes", () => {
+    const tree = new Tree(compareNumbers)
+    for (const value of [10, 5, 2, 1, 15, 20]) {
+      tree.insert(value)
+    }
+
+    expect(tree.leafCount()).toBe(2)
+  })
+})

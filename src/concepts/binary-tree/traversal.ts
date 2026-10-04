@@ -44,6 +44,15 @@ export class Tree<T> extends TreeBase<T> {
     }
     return traverse(this._root)
   }
+
+  leafCount(): number {
+    const count = (node: NodeLink<T>): number => {
+      if (!node) return 0
+      if (this.isLeaf(node)) return 1
+      return count(node.left) + count(node.right)
+    }
+    return count(this._root)
+  }
 }
 
 export type { Comparator, NodeLink, TreeNode }
