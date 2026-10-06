@@ -1,18 +1,20 @@
 function productExceptSelf(nums: number[]): number[] {
-  const ans = Array.from({ length: nums.length }, () => 1)
+  const length = nums.length
+  const ans = Array.from({ length }, () => Number.NaN)
 
-  // Prefix
-  for (let i = 0, acc = 1; i < nums.length - 1; i++) {
+  let prefix = 1
+  for (let i = 0; i < length; i++) {
+    ans[i] = prefix
     // biome-ignore lint/style/noNonNullAssertion: 0 < i < len-1
-    acc *= nums[i]!
-    ans[i + 1] = acc
+    prefix *= nums[i]!
   }
 
-  // Postfix + ans
-  for (let i = nums.length - 1, acc = 1; i >= 0; i--) {
-    ans[i] = (ans[i] ?? 1) * acc
-    // biome-ignore lint/style/noNonNullAssertion: len-1 >= i >= 0
-    acc *= nums[i]!
+  let suffix = 1
+  for (let i = length - 1; i >= 0; i--) {
+    // biome-ignore lint/style/noNonNullAssertion: 0 < i < len-1
+    ans[i] = ans[i]! * suffix
+    // biome-ignore lint/style/noNonNullAssertion: 0 < i < len-1
+    suffix *= nums[i]!
   }
 
   return ans
