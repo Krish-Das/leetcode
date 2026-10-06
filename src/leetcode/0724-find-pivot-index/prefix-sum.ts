@@ -1,21 +1,22 @@
 function pivotIndex(nums: number[]): number {
-  const accumulator = Array.from(
-    { length: nums.length },
-    () => Number.POSITIVE_INFINITY,
-  )
+  const length = nums.length
+  const ans = Array.from({ length }, () => Number.NaN)
 
-  // walk backward and accumulate the sum
-  for (let i = nums.length - 1, bAcc = 0; i >= 0; i--) {
-    // biome-ignore lint/style/noNonNullAssertion: 0 < i < len
-    bAcc += nums[i]!
-    accumulator[i] = bAcc
+  let post = 0
+  for (let i = length - 1; i >= 0; i--) {
+    ans[i] = post
+    // biome-ignore lint/style/noNonNullAssertion: 0 < i < len-1
+    post += nums[i]!
   }
 
-  // walk forward and check the sum
-  for (let i = 0, fAcc = 0; i < nums.length; i++) {
-    // biome-ignore lint/style/noNonNullAssertion: 0 < i < len
-    fAcc += nums[i]!
-    if (fAcc === accumulator[i]) return i
+  let pre = 0
+  for (let i = 0; i < length; i++) {
+    // biome-ignore lint/style/noNonNullAssertion: 0 < i < len-1
+    const res = ans[i]! - pre
+    if (res === 0) return i
+    ans[i] = res
+    // biome-ignore lint/style/noNonNullAssertion: 0 < i < len-1
+    pre += nums[i]!
   }
 
   return -1
