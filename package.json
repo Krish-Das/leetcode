@@ -4,21 +4,21 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@biomejs/biome": "2.5.7",
     "@type-challenges/utils": "^0.1.1",
     "@types/bun": "latest",
     "@vitest/ui": "^4.1.10",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
     "vitest": "^4.1.10"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "scripts": {
-    "format": "biome format --write .",
-    "lint": "biome lint .",
-    "lint:fix": "biome lint --write .",
-    "check": "biome check .",
-    "check:fix": "biome check --write .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
