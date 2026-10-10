@@ -18,6 +18,21 @@ class Traversal<T> {
     }
   }
 
+  *inOrder(): Generator<T, void, undefined> {
+    const stack: NodeLink<T>[] = []
+    let current = this.root
+    while (current || stack.length) {
+      while (current) {
+        stack.push(current)
+        current = current.left
+      }
+      // biome-ignore lint/style/noNonNullAssertion: guarded by stack.length check
+      const node = stack.pop()!
+      yield node.value
+      current = node.right
+    }
+  }
+
   *levelOrder(): Generator<T, void, undefined> {
     const queue: NodeLink<T>[] = [this.root]
 
