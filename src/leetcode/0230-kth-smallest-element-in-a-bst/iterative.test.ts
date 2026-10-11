@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { TreeNode, kthSmallest } from "./iterative"
+import { kthSmallest, TreeNode } from "./iterative"
 
 describe("kthSmallest", () => {
   it("returns the smallest element when k is 1", () => {
