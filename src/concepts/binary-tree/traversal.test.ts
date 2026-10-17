@@ -1,3 +1,4 @@
+// Tests for binary tree traversal, depth, size, and leaf counting.
 import { describe, expect, it } from "vitest"
 import { Tree } from "./traversal"
 
