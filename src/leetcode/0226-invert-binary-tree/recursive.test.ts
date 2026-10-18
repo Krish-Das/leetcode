@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { createTree } from "#leetcode/tree-node"
-import { invertTree } from "./recursion"
+import { invertTree } from "./recursive"
 
 describe("invertTree (recursion)", () => {
   it("returns null for an empty tree", () => {
