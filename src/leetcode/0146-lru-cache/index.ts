@@ -1,58 +1,35 @@
 class LRUCache {
-  private capacity: number
-  private cache: Map<number, number>
-  private recency: Set<number>
-
-  constructor(capacity: number) {
-    this.capacity = capacity
+  cache: Map<number, number>
+  constructor(private capacity: number) {
     this.cache = new Map<number, number>()
-    this.recency = new Set<number>()
   }
 
-  /**
-   * Move the key to the end of the recency order, or remove it entirely.
-   * @param method - `"update"` (default) re-adds the key as most recent; `"delete"` only removes it.
-   */
-  private updateRecency(
-    key: number,
-    method: "update" | "delete" = "update",
-  ): void {
-    if (this.recency.has(key)) this.recency.delete(key)
-    if (method === "update") this.recency.add(key)
-  }
+  get(key: number): number {
+    const existing = this.cache.get(key)
+    if (existing === undefined) return -1
 
-  get = (key: number): number => {
-    const val = this.cache.get(key)
-    if (val === undefined) return -1
-
-    this.updateRecency(key)
-    return val
+    this.update(key, existing)
+    return existing
   }
 
   put(key: number, value: number): void {
-    // update existing entry — no eviction needed
-    if (this.cache.has(key)) {
-      this.cache.set(key, value)
-      this.updateRecency(key)
-      return
-    }
+    const existing = this.cache.get(key)
+    const isNew = existing === undefined
+    const isExhausted = this.cache.size >= this.capacity
+    if (isNew && isExhausted) this.evict()
 
-    // capacity available — insert without eviction
-    if (this.capacity > 0) {
-      this.cache.set(key, value)
-      this.updateRecency(key)
-      this.capacity--
-      return
-    }
+    this.update(key, value)
+  }
 
-    // at capacity — evict least recently used
-    const leastUsed = this.recency.values().next().value
-    if (leastUsed) {
-      this.cache.delete(leastUsed)
-      this.updateRecency(leastUsed, "delete")
-    }
+  private update(key: number, value: number): void {
+    this.cache.delete(key)
     this.cache.set(key, value)
-    this.updateRecency(key)
+  }
+
+  private evict(): void {
+    // biome-ignore lint/style/noNonNullAssertion: map has >= 1 entry when capacity (>=1) is exhausted
+    const least = Array.from(this.cache.keys()).at(0)!
+    this.cache.delete(least)
   }
 }
 
