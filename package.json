@@ -20,16 +20,16 @@
     "test:coverage": "vitest run --coverage --coverage.reporter=text"
   },
   "dependencies": {
-    "@vitest/coverage-v8": "^4.1.10"
+    "@vitest/coverage-v8": "^4.1.12"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.7",
     "@type-challenges/utils": "^0.1.1",
     "@types/bun": "latest",
-    "@vitest/ui": "^4.1.10",
-    "vitest": "^4.1.10"
+    "@vitest/ui": "^4.1.12",
+    "vitest": "^4.1.12"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.9.2"
   }
 }
