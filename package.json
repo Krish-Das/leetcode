@@ -1,8 +1,18 @@
 {
   "name": "leetcode",
-  "private": true,
-  "type": "module",
   "module": "index.ts",
+  "dependencies": {
+    "@vitest/coverage-v8": "^4.1.12"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.7",
+    "@type-challenges/utils": "^0.1.1",
+    "@types/bun": "latest",
+    "@vitest/ui": "^4.1.12",
+    "typescript": "^6",
+    "vitest": "^4.1.12"
+  },
+  "private": true,
   "scripts": {
     "fmt": "biome format --write",
     "fmt:check": "biome format",
@@ -19,17 +29,5 @@
     "test:debug": "vitest --inspect-brk --no-file-parallelism",
     "test:coverage": "vitest run --coverage --coverage.reporter=text"
   },
-  "dependencies": {
-    "@vitest/coverage-v8": "^4.1.12"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.5.7",
-    "@type-challenges/utils": "^0.1.1",
-    "@types/bun": "latest",
-    "@vitest/ui": "^4.1.12",
-    "vitest": "^4.1.12"
-  },
-  "peerDependencies": {
-    "typescript": "^5.9.2"
-  }
+  "type": "module"
 }
