@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import { Trie } from ".."
-import { removeWord } from "./remove"
+import { removeWord } from "./remove-word"
 
 class TestTrie extends Trie {
   removeWord(word: string): boolean {

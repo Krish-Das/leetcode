@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import { Trie } from ".."
 import { getWords } from "./get-words"
-import { removeWord } from "./remove"
+import { removeWord } from "./remove-word"
 
 class TestTrie extends Trie {
   getWords(): string[] {
