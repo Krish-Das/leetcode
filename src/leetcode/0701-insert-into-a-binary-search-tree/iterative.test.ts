@@ -13,7 +13,7 @@ const createNode = (
   right: TreeNode | null = null,
 ): TreeNode => ({ val, left, right })
 
-describe("insertIntoBST", () => {
+describe("insertIntoBST (iterative)", () => {
   it("inserts into an empty tree", () => {
     const root = insertIntoBST(null, 5)
 
