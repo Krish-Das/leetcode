@@ -10,22 +10,22 @@ class TreeNode {
   }
 }
 
-function insertIntoBST(root: TreeNode | null, val: number): TreeNode | null {
-  const newNode = new TreeNode(val)
-  if (!root) return newNode
+type NodeLink = TreeNode | null
+function insertIntoBST(root: NodeLink, val: number): TreeNode | null {
+  if (!root) return new TreeNode(val)
 
-  const stack: (TreeNode | null)[] = [root]
+  const stack: NodeLink[] = [root]
   while (stack.length) {
     const node = stack.pop()
     if (!node) continue
+    if (val === node.val) break
     const side = val < node.val ? "left" : "right"
     if (!node[side]) {
-      node[side] = newNode
+      node[side] = new TreeNode(val)
       break
     }
     stack.push(node[side])
   }
-
   return root
 }
 

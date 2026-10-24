@@ -93,12 +93,8 @@ describe("insertIntoBST (iterative)", () => {
           5
          / \
         3   7
-         \
-          3
     */
-    expect(result).toEqual(
-      createNode(5, createNode(3, null, createNode(3)), createNode(7)),
-    )
+    expect(result).toEqual(createNode(5, createNode(3), createNode(7)))
   })
 
   it("returns the same root reference", () => {
