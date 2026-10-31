@@ -1,31 +1,25 @@
 // biome-ignore-all lint/style/noNonNullAssertion: 0 <= left <= right < s.length
 
 function lengthOfLongestSubstring(s: string): number {
+  if (s.length <= 1) return s.length
+
   const seen = new Map<string, number>()
-  let maxWinSize = 0
-
-  let left = 0
-  let right = 0
-  while (right < s.length) {
-    const char = s[right]!
-    const lastSeenIdx = seen.get(char)
-
-    if (lastSeenIdx === undefined) {
-      seen.set(char, right)
-      const winSize = right - left + 1
-      maxWinSize = Math.max(maxWinSize, winSize)
-      right++
-      continue
+  let out = 0
+  for (let R = 0, L = 0; R < s.length; ) {
+    const right = s[R]!
+    const foundIdx = seen.get(right)
+    if (foundIdx !== undefined) {
+      while (L <= foundIdx) {
+        const left = s[L]!
+        seen.delete(left)
+        L++
+      }
     }
-
-    while (left <= lastSeenIdx) {
-      seen.delete(s[left]!)
-      left++
-    }
-    seen.set(char, right)
-    right++
+    seen.set(right, R)
+    R++
+    out = Math.max(out, R - L)
   }
-  return maxWinSize
+  return out
 }
 
 export { lengthOfLongestSubstring }
