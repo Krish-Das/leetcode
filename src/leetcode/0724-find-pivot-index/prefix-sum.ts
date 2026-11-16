@@ -1,25 +1,17 @@
-function pivotIndex(nums: number[]): number {
-  const length = nums.length
-  const ans = Array.from({ length }, () => Number.NaN)
-
+export function pivotIndex(nums: number[]): number {
+  const ans: number[] = []
   let post = 0
-  for (let i = length - 1; i >= 0; i--) {
-    ans[i] = post
+  for (let idx = nums.length - 1; idx >= 0; idx--) {
+    ans[idx] = post
     // biome-ignore lint/style/noNonNullAssertion: 0 < i < len-1
-    post += nums[i]!
+    post += nums[idx]!
   }
 
   let pre = 0
-  for (let i = 0; i < length; i++) {
+  for (const [idx, num] of nums.entries()) {
     // biome-ignore lint/style/noNonNullAssertion: 0 < i < len-1
-    const res = ans[i]! - pre
-    if (res === 0) return i
-    ans[i] = res
-    // biome-ignore lint/style/noNonNullAssertion: 0 < i < len-1
-    pre += nums[i]!
+    if (ans[idx]! === pre) return idx
+    pre += num
   }
-
   return -1
 }
-
-export { pivotIndex }
