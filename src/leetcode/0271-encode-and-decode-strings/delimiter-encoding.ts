@@ -8,22 +8,17 @@ class Solution {
   decode(str: string): string[] {
     const decoded: string[] = []
 
-    let i = 0
-    while (i < str.length) {
-      const delimiterIdx = str.indexOf(this.delimiter, i)
-      if (delimiterIdx === -1) break
-
-      const lengthStr = str.slice(i, delimiterIdx)
-      const wordLength = Number.parseInt(lengthStr, 10)
-      if (Number.isNaN(wordLength)) break
-
-      const wordStart = delimiterIdx + this.delimiter.length
-      const wordEnd = wordStart + wordLength
-      if (wordEnd > str.length) break
-
-      const word = str.slice(wordStart, wordEnd)
+    let s = str
+    while (s.length) {
+      const delimiterIdx = s.indexOf(this.delimiter)
+      const lengthStr = s.slice(0, delimiterIdx)
+      const wordLen = Number.parseInt(lengthStr, 10)
+      if (Number.isNaN(wordLen)) break
+      const wordStart = lengthStr.length + this.delimiter.length
+      const wordEnd = wordStart + wordLen
+      const word = s.slice(wordStart, wordEnd)
       decoded.push(word)
-      i = wordEnd
+      s = s.slice(wordEnd)
     }
 
     return decoded
