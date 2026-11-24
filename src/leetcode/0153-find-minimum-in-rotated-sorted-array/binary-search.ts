@@ -1,19 +1,19 @@
 /** biome-ignore-all lint/style/noNonNullAssertion: There ain't no way! */
-function findMin(nums: number[]): number {
-  let min = nums[0]!
-  let l = 0
-  let r = nums.length - 1
-  while (l <= r) {
-    const left = nums[l]!
-    const right = nums[r]!
-    const m = Math.floor((l + r) / 2)
-    const middle = nums[m]!
+export function findMin(nums: number[]): number {
+  let left = 0
+  let right = nums.length - 1
 
-    min = Math.min(min, left <= right ? left : middle)
-    if (middle >= left) l = m + 1
-    else r = m - 1
+  while (left < right) {
+    const middle = Math.floor((left + right) / 2)
+
+    if (nums[middle]! > nums[right]!) {
+      left = middle + 1
+    } else {
+      right = middle
+    }
   }
-  return min
+
+  return nums[left]!
 }
 
 console.log(findMin([3, 4, 5, 1, 2]))
