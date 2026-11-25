@@ -8,17 +8,17 @@ function search(nums: number[], target: number): number {
     const left = nums[l]!
     const right = nums[r]!
 
-    if (middle === target) return m
+    if (target === middle) return m
 
-    if (middle < left) {
-      if (middle < target && target <= right) l = m + 1
-      else r = m - 1
-    } else {
-      if (left <= target && target < middle) r = m - 1
+    const isLeftSorted = left <= middle
+    if (isLeftSorted) {
+      if (target >= left && target <= middle) r = m - 1
       else l = m + 1
+    } else {
+      if (target >= middle && target <= right) l = m + 1
+      else r = m - 1
     }
   }
-
   return -1
 }
 
